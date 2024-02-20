@@ -1,0 +1,5 @@
+name: MinecartImproved
+version: '1.0-SNAPSHOT'
+main: ldahleen54.minecartimproved.MinecartImproved
+authors: [ ldahleen54 ]
+api-version: '1.20'
