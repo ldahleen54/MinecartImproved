@@ -36,10 +36,16 @@ public class MinecartSpeedListener implements Listener {
         Minecart minecart = (Minecart) event.getVehicle();
 
         if (isPoweredRail(minecart)) {
-            minecart.setMaxSpeed(1.8);
+            // set speed up to 2.0
+            if(!(minecart.getMaxSpeed() >= 2.0)) {
+                minecart.setMaxSpeed(minecart.getMaxSpeed() + 0.01);
+            }
             plugin.getLogger().info("powered rail Minecraft max speed set to: " + minecart.getMaxSpeed());
         } else {
-            minecart.setMaxSpeed(0.4);
+            // detect if max speed is already 0
+            if(!(minecart.getMaxSpeed() <= 0)) {
+                minecart.setMaxSpeed(minecart.getMaxSpeed() - 0.005);
+            }
             plugin.getLogger().info("not powered railMinecraft max speed set to: " + minecart.getMaxSpeed());
         }
     }
