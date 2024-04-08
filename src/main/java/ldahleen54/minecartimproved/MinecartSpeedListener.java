@@ -9,12 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.Vector;
-
-import java.util.logging.Level;
 
 public class MinecartSpeedListener implements Listener {
-    private JavaPlugin plugin;
+    private final JavaPlugin plugin;
     public MinecartSpeedListener(JavaPlugin plugin) {
         this.plugin = plugin;
     }
@@ -23,7 +20,7 @@ public class MinecartSpeedListener implements Listener {
         if (event.getVehicle() instanceof Minecart) {
             Minecart minecart = (Minecart) event.getVehicle();
             // Set the minecart's maximum speed to a higher value
-            minecart.setMaxSpeed(1.8);
+            minecart.setMaxSpeed(0.4);
             plugin.getLogger().info("Minecraft max speed set to: " + minecart.getMaxSpeed());
         }
     }
@@ -37,14 +34,14 @@ public class MinecartSpeedListener implements Listener {
 
         if (isPoweredRail(minecart)) {
             // set speed up to 2.0
-            if(!(minecart.getMaxSpeed() >= 2.0)) {
+            if(!(minecart.getMaxSpeed() >= 1.8)) {
                 minecart.setMaxSpeed(minecart.getMaxSpeed() + 0.01);
             }
             plugin.getLogger().info("powered rail Minecraft max speed set to: " + minecart.getMaxSpeed());
         } else {
             // detect if max speed is already 0
-            if(!(minecart.getMaxSpeed() <= 0)) {
-                minecart.setMaxSpeed(minecart.getMaxSpeed() - 0.005);
+            if(!(minecart.getMaxSpeed() <= 0.4)) {
+                minecart.setMaxSpeed(minecart.getMaxSpeed() - 0.15);
             }
             plugin.getLogger().info("not powered railMinecraft max speed set to: " + minecart.getMaxSpeed());
         }
